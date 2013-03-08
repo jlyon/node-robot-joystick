@@ -1,0 +1,94 @@
+<html>
+  <head>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="/virtualjoystick.js/virtualjoystick.js"></script>
+
+    <script>
+      var socket = io.connect(document.URL);
+      
+      // on connection to server
+      socket.on('connect', function(){
+      });
+
+      // listener, whenever the server emits 'updatechat', this updates the chat body
+      socket.on('ping', function (data) {
+        console.log(data);
+      });
+
+
+      // on load of page
+      $(function(){
+
+        console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
+        var joystick  = new VirtualJoystick({
+          container : document.getElementById('container'),
+          mouseSupport  : true
+        });
+        var data = false;
+
+        setInterval(function(){
+          console.log(data);
+          var message =
+            ' dx:'+joystick.deltaX()
+            + ' dy:'+joystick.deltaY();
+            new_data = {'dx': joystick.deltaX(), 'dy': joystick.deltaY()};
+            if (new_data.dx != data.dx || new_data.dy != data.dy) {
+              data = new_data;
+              socket.emit('update', data);
+              //console.log(message);
+              $('#result').html('<b>Result:</b> ' . message);
+            }
+
+        }, 1/5 * 1000);
+        
+
+      });
+
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    
+    <style>
+    body {
+      overflow  : hidden;
+      padding   : 0;
+      margin    : 0;
+      background-color: #BBB;
+    }
+    #info {
+      position  : absolute;
+      top   : 0px;
+      width   : 100%;
+      padding   : 5px;
+      text-align  : center;
+    }
+    #info a {
+      color   : #66F;
+      text-decoration : none;
+    }
+    #info a:hover {
+      text-decoration : underline;
+    }
+    #container {
+      width   : 100%;
+      height    : 100%;
+      overflow  : hidden;
+      padding   : 0;
+      margin    : 0;
+      -webkit-user-select : none;
+      -moz-user-select  : none;
+    }
+    </style>
+  </head>
+
+  <body>
+    <div id="container"></div>
+    <div id="info">
+      <span id="result"></span>
+    </div> 
+  </body>
+</html>
