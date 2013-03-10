@@ -45,8 +45,8 @@
             if (new_data.dx != data.dx || new_data.dy != data.dy) {
               data = new_data;
               socket.emit('update', data);
-              //console.log(message);
-              $('#result').html('<b>Result:</b> ' . message);
+              console.log(data);
+              //$('#result').html('<b>Result:</b> ' . message);
             }
 
         }, 1/10 * 1000);
