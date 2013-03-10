@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 
 
 // Watch the motion dir and return the latest image
-var watch = require('watch');
+/*var watch = require('watch');
 var fs = require('fs');
 var currentImage = null;
 watch.createMonitor(motion_dir, function (monitor) {
@@ -41,7 +41,7 @@ app.get('/camera', function (req, res) {
     res.end(img, 'binary');
   }
   return res.end();
-});
+});*/
 
 
 

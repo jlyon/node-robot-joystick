@@ -17,10 +17,11 @@
       socket.on('ping', function (data) {
         console.log(data);
       });
-
+//url='http://192.168.1.16:3000/'
 
       // on load of page
       $(function(){
+        $('body').css('background-image', 'url('+ url.replace('3000', '3001') +')');
 
         console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
         var joystick  = new VirtualJoystick({
@@ -32,9 +33,9 @@
         setInterval(function(){
           console.log(data);
           // Grab the latest camera image
-          var random = Math.floor(Math.random() * Math.pow(2, 31));
-          var image_url = url + 'camera?' + random;
-          $('#camera').attr('src', image_url);
+          //var random = Math.floor(Math.random() * Math.pow(2, 31));
+          //var image_url = url + 'camera?' + random;
+          //$('#camera').attr('src', image_url);
           //$('body').css('background-image', 'url('+ image_url +')');
 
           // Socket emit an updated joystick position
@@ -66,6 +67,7 @@
       padding   : 0;
       margin    : 0;
       background-color: #BBB;
+      background-size: 100%;
     }
     #info {
       position  : absolute;
