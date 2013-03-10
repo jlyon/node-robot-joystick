@@ -20,7 +20,7 @@
 
       // on load of page
       $(function(){
-        //$('body').css('background-image', 'url('+ url.replace('3000', '3001') +')');
+        $('body').css('background-image', 'url('+ url.replace('3000', '3001') +')');
 
         console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
         var joystick  = new VirtualJoystick({
@@ -66,7 +66,8 @@
       padding   : 0;
       margin    : 0;
       background-color: #BBB;
-      background-size: 100%;
+      /*background-size: 100%;*/
+      background: center no-repeat;
     }
     #info {
       position  : absolute;
