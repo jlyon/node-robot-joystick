@@ -6,7 +6,8 @@
     <script src="/virtualjoystick.js/virtualjoystick.js"></script>
 
     <script>
-      var socket = io.connect(document.URL);
+      var url = document.URL;
+      var socket = io.connect(url);
       
       // on connection to server
       socket.on('connect', function(){
@@ -30,6 +31,13 @@
 
         setInterval(function(){
           console.log(data);
+          // Grab the latest camera image
+          var random = Math.floor(Math.random() * Math.pow(2, 31));
+          var image_url = url + 'camera?' + random;
+          $('#camera').attr('src', image_url);
+          //$('body').css('background-image', 'url('+ image_url +')');
+
+          // Socket emit an updated joystick position
           var message =
             ' dx:'+joystick.deltaX()
             + ' dy:'+joystick.deltaY();
@@ -41,7 +49,7 @@
               $('#result').html('<b>Result:</b> ' . message);
             }
 
-        }, 1/5 * 1000);
+        }, 1 * 1000);
         
 
       });
@@ -86,6 +94,7 @@
   </head>
 
   <body>
+    <img id="camera" />
     <div id="container"></div>
     <div id="info">
       <span id="result"></span>

@@ -5,6 +5,7 @@
      "dependencies": {
         "express": "",
         "socket.io": "",
-        "johnny-five": ""
+        "johnny-five": "",
+      	"watch": ""
      }
 }
