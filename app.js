@@ -52,7 +52,7 @@ io.sockets.on('connection', function (socket) {
   socket.on('update', function (data) {
     // we tell the client to execute 'updatechat' with 2 parameters
     //io.sockets.emit('updatechat', socket.username, data);
-    //motor_move(data);
+    motor_move(data);
     //console.log(data);
   });
 
@@ -64,7 +64,7 @@ io.sockets.on('connection', function (socket) {
 
 
 
-/*
+
 var five = require('johnny-five'),
           board, motor, led;
 
@@ -147,4 +147,3 @@ function motor_move(d){
     }
   }
 }
-*/
